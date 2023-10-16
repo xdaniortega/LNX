@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.19;
+pragma solidity ^0.8.8;
 
 import {CCIPReceiver} from "@chainlink/contracts-ccip/src/v0.8/ccip/applications/CCIPReceiver.sol";
 import {Client} from "@chainlink/contracts-ccip/src/v0.8/ccip/libraries/Client.sol";
@@ -38,8 +38,10 @@ contract CrossChainRelayer is CCIPReceiver, Withdraw {
     latestMessage = abi.decode(message.data, (string));
 
     DecodedMessage memory decodedMessage = _decodeLatestMessage(latestMessage);
+
     // Forward the message to the InputBox contract
     //Maybe inputBox changes for different dApps
+    //we're not handling input hash returned by addInput
     IInputBox(inputBoxAddress).addInput(
       decodedMessage.dappAddress,
       abi.encode(decodedMessage.message)
