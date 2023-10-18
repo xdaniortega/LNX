@@ -1,0 +1,40 @@
+{
+    "name": "nexo-frontend",
+    "version": "1.0.0",
+    "description": "Custom Celo Composer project.",
+    "private": true,
+    "author": "Celo",
+    "license": "MIT",
+    "scripts": {
+        "react-app:dev": "yarn workspace @nexo-frontend/react-app dev",
+        "react-app:build": "yarn workspace @nexo-frontend/react-app build",
+        "react-app:start": "yarn workspace @nexo-frontend/react-app start",
+        "react-app:lint": "yarn workspace @nexo-frontend/react-app lint",
+        "hardhat:test": "yarn workspace @nexo-frontend/hardhat test",
+        "hardhat:test-local": "yarn workspace @nexo-frontend/hardhat test-local",
+        "hardhat:create-account": "yarn workspace @nexo-frontend/hardhat create-account",
+        "hardhat:accounts": "yarn workspace @nexo-frontend/hardhat accounts",
+        "hardhat:devchain": "yarn workspace @nexo-frontend/hardhat devchain",
+        "hardhat:deploy": "yarn workspace @nexo-frontend/hardhat deploy",
+        "hardhat:deploy-reset-watch": "yarn workspace @nexo-frontend/hardhat deploy-reset-watch",
+        "hardhat:watch": "yarn workspace @nexo-frontend/hardhat watch",
+        "hardhat:fork-mainnet": "yarn workspace @nexo-frontend/hardhat fork-mainnet",
+        "subgraphs:test": "yarn workspace @nexo-frontend/subgraphs test",
+        "subgraphs:get-abi": "yarn workspace @nexo-frontend/subgraphs get-abi"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/celo-org/celo-composer.git"
+    },
+    "bugs": {
+        "url": "https://github.com/celo-org/celo-composer/issues"
+    },
+    "homepage": "https://github.com/celo-org/celo-composer/blob/main/README.md",
+    "workspaces": [
+        "packages/*"
+    ],
+    "keywords": [
+        "celo-composer",
+        "celo"
+    ]
+}

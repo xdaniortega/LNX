@@ -1,0 +1,7 @@
+.venv
+.env
+deployments
+out
+node_modules
+cache
+.yarn
