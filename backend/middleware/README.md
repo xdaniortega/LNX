@@ -120,6 +120,23 @@ Or if you want to mint 10\*\*18 units of `CCIP-BnM` test token on Avalanche Fuji
 ```shell
 forge script ./script/Faucet.s.sol -vvv --broadcast --rpc-url avalancheFuji --sig "run(uint8)" -- 2
 ```
+### STEPS TO REPRODUCE ONCE EVERYTHING DEPLOYED
+1. We can send messages from Fuji to Sepolia, and relayer will forward to cartesi dApp
+
+`forge script ./script/Example05.s.sol:SendMessage -vvv --broadcast --rpc-url avalancheFuji --sig "run(address,uint8,address,string,uint8)" -- <BASIC_MESSAGE_SENDER_ADDRESS> 0 <BASIC_MESSAGE_RECEIVER_ADDRESS> "Message from origin at 12:43" 1`.
+
+2. If the sender contract does not have enough funds:
+`cast send 0x0b9d5D9136855f6FEc3c0993feE6E9CE8a297846 "transfer(address,uint256)"  <SENDER> 300000000000000000 --rpc-url avalancheFuji --private-key=<>                                      `
+Putting your private key.
+
+
+3. OFFICIAL ADDRESSES:
+`Relayer: 0x98fcf378FdB37a9615014E91772EF9d921697ED2`
+`BasicMessage Sender: 0x78966DeFeC946e78BF9E2A7f93b5f443ADbD36eE`
+
+WARNING
+X. Change docker compose testnet yml with your mnemonic if you have problems with validator node.
+      `AUTH_MNEMONIC: ${AUTH_MNEMONIC:?undefined AUTH_MNEMONIC}` to `AUTH_MNEMONIC: xxx xxx xxx `
 
 
 ### THIS IS THE FIRST STEP Example 6 - Send & Receive Cross-Chain Messages and Pay with LINK Tokens
@@ -171,9 +188,7 @@ function run(
 For example, if you want to send a "Hello World" message type:
 
 ```shell
-forge script ./script/Example05.s.sol:SendMessage -vvv --broadcast --rpc-url avalancheFuji --sig "ru
-n(address,uint8,address,string,uint8)" -- <BASIC_MESSAGE_SENDER_ADDRESS> 0 <BASIC_MESSAGE_RECEIVER_ADDRESS> "Hello World"
-1
+forge script ./script/Example05.s.sol:SendMessage -vvv --broadcast --rpc-url avalancheFuji --sig "run(address,uint8,address,string,uint8)" -- <BASIC_MESSAGE_SENDER_ADDRESS> 0 <BASIC_MESSAGE_RECEIVER_ADDRESS> "Hello World" 1
 ```
 
 5. Once the CCIP message is finalized on the destination blockchain, you can see the details about the latest message using the `script/Example02.s.sol:GetLatestMessageDetails` smart contract:
@@ -218,6 +233,8 @@ forge script ./script/Example05.s.sol:DeployBasicMessageSender -vvv --broadcast 
 
 ```shell
 cast send 0x0b9d5D9136855f6FEc3c0993feE6E9CE8a297846 "transfer(address,uint256)" <BASIC_MESSAGE_SENDER_ADDRESS> 10000000000000000 --rpc-url avalancheFuji --private-key=$PRIVATE_KEY
+
+cast send 0xCcB0F7F1DCdcD69d9D48094E3114cb3155F67eb8 --rpc-url avalancheFuji --private-key=<> --value 0.13ether
 ```
 
 3. Deploy the [`BasicMessageReceiver.sol`](./src/BasicMessageReceiver.sol) smart contract to the **destination blockchain**. For this purpose, you can reuse the `script/Example02.s.sol:DeployBasicMessageReceiver` smart contract from the second example:
