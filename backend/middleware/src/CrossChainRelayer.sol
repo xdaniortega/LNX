@@ -12,6 +12,7 @@ contract CrossChainRelayer is CCIPReceiver, Withdraw {
   address latestSender;
   string latestMessage;
   address inputBoxAddress; // Address of the InputBox contract
+  address dappAddress; // Address of the Dapp contract
 
   event MessageReceived(
     bytes32 latestMessageId,
@@ -20,13 +21,20 @@ contract CrossChainRelayer is CCIPReceiver, Withdraw {
     string latestMessage
   );
 
+  event decodedEvent(address dappAddress, string message);
+
   struct DecodedMessage {
     address dappAddress;
     string message;
   }
 
-  constructor(address router, address _inputBoxAddress) CCIPReceiver(router) {
+  constructor(
+    address router,
+    address _inputBoxAddress,
+    address _dappAddress
+  ) CCIPReceiver(router) {
     inputBoxAddress = _inputBoxAddress;
+    dappAddress = _dappAddress;
   }
 
   function _ccipReceive(
@@ -37,14 +45,14 @@ contract CrossChainRelayer is CCIPReceiver, Withdraw {
     latestSender = abi.decode(message.sender, (address));
     latestMessage = abi.decode(message.data, (string));
 
-    DecodedMessage memory decodedMessage = _decodeLatestMessage(latestMessage);
-
+    //DecodedMessage memory decodedMessage = _decodeLatestMessage(latestMessage);
+    //dappAddress = decodedMessage.dappAddress;
     // Forward the message to the InputBox contract
-    //Maybe inputBox changes for different dApps
-    //we're not handling input hash returned by addInput
+    // Maybe inputBox changes for different dApps
+    // we're not handling input hash returned by addInput
     IInputBox(inputBoxAddress).addInput(
-      decodedMessage.dappAddress,
-      abi.encode(decodedMessage.message)
+      dappAddress,
+      abi.encodePacked(latestMessage)
     );
 
     emit MessageReceived(
@@ -69,20 +77,25 @@ contract CrossChainRelayer is CCIPReceiver, Withdraw {
   }
 
   // Private function to decode the latest message
-  function _decodeLatestMessage(
+  /*function _decodeLatestMessage(
     string memory message
-  ) private pure returns (DecodedMessage memory) {
+  ) internal pure returns (DecodedMessage memory) {
     bytes memory messageData = bytes(message);
 
-    // Decode the first 20 bytes as an address (Dapp address)
-    address dappAddress;
+    // Decode the first 40 characters as an address (Dapp address)
+    string memory _dappAddress;
     assembly {
-      dappAddress := mload(add(messageData, 20))
+      _dappAddress := mload(add(messageData, 40))
     }
 
     // The remaining bytes are the message content
     string memory messageContent = string(abi.encodePacked(messageData));
 
-    return DecodedMessage(dappAddress, messageContent);
+    return
+      DecodedMessage(address(bytes20(bytes(_dappAddress))), messageContent);
+  }*/
+
+  function getDappAddress() public view returns (address) {
+    return dappAddress;
   }
 }

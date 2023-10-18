@@ -9,7 +9,11 @@ import {Client} from "@chainlink/contracts-ccip/src/v0.8/ccip/libraries/Client.s
 import {IERC20} from "@chainlink/contracts-ccip/src/v0.8/vendor/openzeppelin-solidity/v4.8.0/token/ERC20/IERC20.sol";
 
 contract DeployCrossChainRelayer is Script, Helper {
-  function run(SupportedNetworks destination, address dappInputBox) external {
+  function run(
+    SupportedNetworks destination,
+    address dappInputBox,
+    address dappAddress
+  ) external {
     uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
     vm.startBroadcast(deployerPrivateKey);
 
@@ -17,7 +21,8 @@ contract DeployCrossChainRelayer is Script, Helper {
 
     CrossChainRelayer crossChainRelayer = new CrossChainRelayer(
       router,
-      dappInputBox
+      dappInputBox,
+      dappAddress
     );
 
     console.log(
