@@ -42,14 +42,6 @@
   resolved "https://registry.yarnpkg.com/@celo/contracts/-/contracts-9.0.0.tgz#1465d685c4b48515c09ca81fdd41b1d06142dbc5"
   integrity sha512-+DLFoV6mYQh4vLoYlcyArrgcU1zJAbb5BbBLKTbUnNkuGSYCoNqvik0OfpujhJ44SHlX+BERbW3ydzdj+kFVpg==
 
-"@celo/ganache-cli@git+https://github.com/celo-org/ganache-cli.git#e933297":
-  version "6.6.1"
-  resolved "git+https://github.com/celo-org/ganache-cli.git#e93329707efbe899ac2f32a30ccf2badbbec8bdf"
-  dependencies:
-    ethereumjs-util "6.1.0"
-    source-map-support "0.5.12"
-    yargs "13.2.4"
-
 "@celo/utils@1.5.2":
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/@celo/utils/-/utils-1.5.2.tgz#ddb7f3b50c801225ab41d2355fbe010976329099"
@@ -994,18 +986,6 @@
   integrity sha512-4BAffykYOgO+5nzBWYwE3W90sBgLJoUPRWWcL8wlyiM8IB8ipJz3UMJ9KXQd1RKQXpKp8Tutn80HZtWsu2u76w==
   dependencies:
     defer-to-connect "^2.0.0"
-
-"@terminal-fi/celo-devchain@^4.0.1":
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/@terminal-fi/celo-devchain/-/celo-devchain-4.0.1.tgz#3cbca3557a1a2209d20d185b46ead3647be4150e"
-  integrity sha512-sOycbLQ+5w9KoiGQ6CBdUW+wDTRPWieMCLy/VWisBLb/C/liD2/QABrOgcjLOER831JMFR4AC3d5KKIhr9bmGg==
-  dependencies:
-    "@celo/contractkit" "^1.2.4"
-    "@celo/ganache-cli" "git+https://github.com/celo-org/ganache-cli.git#e933297"
-    commander "^6.2.0"
-    node-fetch "^2.6.1"
-    targz "^1.0.1"
-    tmp "^0.2.1"
 
 "@trufflesuite/bigint-buffer@1.1.10":
   version "1.1.10"

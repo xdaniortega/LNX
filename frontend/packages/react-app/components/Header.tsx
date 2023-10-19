@@ -1,10 +1,6 @@
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { useConnect } from "wagmi";
-import { InjectedConnector } from "wagmi/connectors/injected";
 
 import {
   useWeb3Modal,
@@ -61,9 +57,7 @@ export default function Header() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                  <w3m-network-button />
-                  <a></a>
-                  <w3m-connect-button />
+                <w3m-button />
               </div>
             </div>
           </div>

@@ -10,6 +10,14 @@ yarn
 
 Run `yarn` or `npm install` to install all the required dependencies to run the dApp.
 
+```bash
+yarn add next
+```
+
+```bash
+yarn build
+```
+
 > React + Tailwind CSS Template does not have any dependency on hardhat and truffle.
 > This starterkit does not include connection of Hardhat/Truffle with ReactJS. It's up to the user to integrate smart contract with ReactJS. This gives user more flexibily over the dApp.
 
