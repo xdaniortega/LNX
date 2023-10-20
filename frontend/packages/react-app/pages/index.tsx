@@ -35,16 +35,22 @@ export default function Home() {
 		address: '0x78966DeFeC946e78BF9E2A7f93b5f443ADbD36eE',
 		abi: BasicMessageABI,
 		functionName: 'send',
-		args: [
-			"16015286601757825753",
+/*		args: [
+			args.destinationChainSelector, 
+			args.receiver,
+			args.messageText, 
+			args.payFeesIn
+		]
+*/		args: [
+			args.destinationChainSelector,
 			args.receiver,
 			args.messageText,
-			1//args.payFeesIn
-		],
+			args.payFeesIn
+		]
 		}).then((hash) => {
 			if (hash) {
 			// Transaction hash está disponible, puedes mostrar un mensaje con él
-			console.log(`Transaction Hash: ${hash}`);
+			console.log(`CIIP Hash:`, hash);
 			} else {
 			console.log('La transacción no se completó con éxito.');
 			}
