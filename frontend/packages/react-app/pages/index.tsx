@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 import Textarea from '@mui/joy/Textarea';
 import Button from '@mui/joy/Button';
-import { prepareWriteContract, writeContract } from '@wagmi/core'
+import { WriteContractResult, writeContract } from '@wagmi/core'
 import { BasicMessageABI } from "../utils/abis/MessageSender";
 import { buildArgs } from "../components/_helper";
 
@@ -10,6 +10,8 @@ export default function Home() {
   const [userAddress, setUserAddress] = useState("");
   const { address, isConnected } = useAccount();
   const [messageText, setMessageText] = useState(""); // State para el texto del mensaje
+  const [transactionResult, setTransactionResult] = useState<WriteContractResult | null>(null);
+
 
   useEffect(() => {
     if (isConnected && address) {
@@ -44,6 +46,7 @@ export default function Home() {
 			if (hash) {
 			// Transaction hash está disponible, puedes mostrar un mensaje con él
 			console.log(`CIIP Hash:`, hash);
+      setTransactionResult(hash); // Almacenar el hash de la transacción en el estado
 			} else {
 			console.log('La transacción no se completó con éxito.');
 			}
@@ -63,6 +66,11 @@ export default function Home() {
           ></Textarea>
           <Button type="submit">Submit</Button>
         </form>
+        {transactionResult && ( // Mostrar el resultado si existe
+          <div className="h2">
+            Transaction Hash: {transactionResult.hash}
+          </div>
+        )}
       </div>
     </div>
   );
