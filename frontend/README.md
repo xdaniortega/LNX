@@ -1,204 +1,197 @@
-# Echo DApp Front-end
+<!-- TITLE -->
+<p align="center"> 
+  <img width="100px" src="https://github.com/celo-org/celo-composer/blob/main/images/readme/celo_isotype.svg" align="center" alt="Celo" />
+ <h2 align="center">Celo Composer</h2>
+ <p align="center">Build, deploy, and iterate quickly on decentralized applications using Celo.</p>
+</p>
+  <p align="center">
+    <a href="https://github.com/celo-org/celo-composer/graphs/stars">
+      <img alt="GitHub Contributors" src="https://img.shields.io/github/stars/celo-org/celo-composer?color=FCFF52" />
+    </a>
+    <a href="https://github.com/celo-org/celo-composer/graphs/contributors">
+      <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/celo-org/celo-composer?color=E7E3D4" />
+    </a>
+    <a href="https://github.com/celo-org/celo-composer/issues">
+      <img alt="Issues" src="https://img.shields.io/github/issues/celo-org/celo-composer?color=E7E3D4" />
+    </a>
+    <a href="https://github.com/celo-org/celo-composer/pulls">
+      <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/celo-org/celo-composer?color=E7E3D4" />
+    </a>
+    <a href="https://opensource.org/license/mit/">
+      <img alt="MIT License" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+    </a>
+  </p>
+</p>
 
-This project is a simple example on how to implement a Cartesi DApp front-end.
-It is a specific client for the "Echo" applications of the Rollups Examples repo, and is intended to work using any of the `echo-xxx` projects as the back-end.
+<!-- TABLE OF CONTENTS -->
 
-It is implemented as a regular ReactJS application, using [ethers](https://docs.ethers.io/) and [apollo](https://www.apollographql.com/docs/react/) as its main dependencies.
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
 
-It interacts with the DApp in two ways:
+<!-- ABOUT THE PROJECT -->
 
-- Sends inputs to the DApp ([`RoarForm` component](#send-an-input-the-roar-component))
-- Queries the DApp for results ([`Echoes` component](#query-outputs-the-echoes-component))
+## About The Project
 
-This version is currently restricted to `echo-xxx` DApps running on localhost using the local Hardhat chain and default test wallet.
+Celo Composer allows you to quickly build, deploy, and iterate on decentralized applications using Celo. It provides a number of frameworks, examples, and Celo specific functionality to help you get started with your next dApp.
 
-## Building
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-Simply execute the following command from the project's directory:
+## Built With
 
-```shell
-yarn
+Celo Composer is built on Celo to make it simple to build dApps using a variety of front-end frameworks, and libraries.
+
+- [Celo](https://celo.org/)
+- [Solidity](https://docs.soliditylang.org/en/v0.8.19/)
+- [Next.js](https://nextjs.org/)
+- [React.js](https://reactjs.org/)
+- [Material UI](https://mui.com/)
+- [React Native](https://reactnative.dev/)
+- [Flutter](https://docs.flutter.dev/)
+- [React-celo](https://github.com/celo-org/react-celo/)
+- [Rainbowkit-celo](https://github.com/celo-org/rainbowkit-celo)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- GETTING STARTED -->
+
+## Prerequisites
+
+- Node
+- Git (v2.38 or higher)
+
+## How to use Celo Composer
+
+The easiest way to start with Celo Composer is using `@celo/celo-composer`. This CLI tool lets you quickly start building dApps on Celo for multiple frameworks, including React (with either react-celo or rainbowkit-celo), React Native (w/o Expo), Flutter, and Angular. To get started, just run the following command, and follow the steps:
+
+```bash
+npx @celo/celo-composer@latest create
 ```
 
-## Running
+### Front-end framework
 
-First of all, you should run an `echo-xxx` back-end in your local environment. It could be [echo-python](../echo-python/), [echo-js](../echo-python/), or any other such example.
+![Celo Composer select framework](https://github.com/celo-org/celo-composer/blob/main/images/readme/cc_step_1.png?raw=true)
 
-With an Echo DApp running, open a separate terminal in this project's directory, and run:
+### Web3 library (for react-app)
 
-```shell
-yarn start
-```
+![Celo Composer select framework](https://github.com/celo-org/celo-composer/blob/main/images/readme/cc_step_2.png?raw=true)
 
-This will execute the front-end application in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Smart contract framework
 
-## How it works
+![Celo Composer tool selection](https://github.com/celo-org/celo-composer/blob/main/images/readme/cc_step_3.png?raw=true)
 
-### Send an Input: the Roar Component
+### Subgraph
 
-This component presents a Form that captures a string entered by the user, and then sends it as an Input to the Echo DApp.
-This component uses [ethers](https://docs.ethers.io/) to interact with the Cartesi Rollups through the blockchain. It follows these simple steps:
+![Celo Composer subgraph support](https://github.com/celo-org/celo-composer/blob/main/images/readme/cc_step_4.png?raw=true)
 
-- Connects to the blockchain using a provider
-- Creates a wallet instance connected to the provider so we can send signed transactions
-- Creates a Cartesi `InputFacet` contract instance for the DApp
-- Sends an `addInput` transaction using the `InputFacet` contract
+### Name your dApp
 
-#### Connect to the blockchain
+![Celo Composer dApp name](https://github.com/celo-org/celo-composer/blob/main/images/readme/cc_step_5.png?raw=true)
 
-In order to send inputs to the DApp, the first step is to connect to the blockchain on which it is deployed.
-In this case, we are using ethers' `JsonRpcProvider` to connect to the local Hardhat instance, as follows:
+**_🔥Voila, you have a dApp ready to go. Voila, you have a dApp ready to go. Start building your dApp on Celo._**
 
-```js
-import { JsonRpcProvider } from "@ethersproject/providers";
-...
-const HARDHAT_LOCALHOST_RPC_URL = "http://localhost:8545";
-const provider = new JsonRpcProvider(HARDHAT_LOCALHOST_RPC_URL);
-```
+### Getting started
 
-#### Create a wallet instance
+Once your custom dApp has been created, just install dependencies, either with `yarn` or `npm i`, and run the respective script from the `package.json` file.
+## Supported Frameworks
 
-Now we use ethers to instantiate a Wallet. In this case we are using Hardhat's default test mneumonic:
+### React
 
-```js
-import { ethers } from "ethers";
-...
-const HARDHAT_DEFAULT_MNEMONIC =
-  "test test test test test test test test test test test junk";
+- Support for Website and Progressive Web Application.
+- Works with all major crypto wallets.
 
-const signer = ethers.Wallet.fromMnemonic(
-        HARDHAT_DEFAULT_MNEMONIC,
-        `m/44'/60'/0'/0/0`
-      ).connect(provider);
-```
+Check [package readme](https://github.com/celo-org/celo-composer/blob/main/packages/react-app/README.md) to learn more about.
 
-#### Create an InputFacet contract instance
+### React Native
 
-To be able to actually send inputs, we need to instantiate an `InputFacet` contract using ethers. Here we use the Cartesi Rollups `InputFacet__factory` with the `LOCALHOST_DAPP_ADDRESS`, which is the default Cartesi DApp Address for local deployments.
+- Out of the box config, just focus on buidl.
+- Support for Android and IOS.
+- Works with and without [Expo](https://expo.dev/).
+- Working example app included.
 
-```js
-import {InputFacet__factory} from "@cartesi/rollups";
-...
-const LOCALHOST_DAPP_ADDRESS = "0xF8C694fd58360De278d5fF2276B7130Bfdc0192A"
-const inputContract = InputFacet__factory.connect(LOCALHOST_DAPP_ADDRESS, signer)
-```
+Check [package readme](https://github.com/celo-org/celo-composer/blob/main/packages/react-native-app/README.md) to learn more about.
 
-#### Send a transaction to add an Input
+### Flutter
 
-Finally, we can send an `addInput` transaction and then check its result.
+- One command to get started - Type `flutter run` to start development in your mobile phone.
+- Works with all major mobile crypto wallets.
+- Support for Android, IOS (Web, Windows, and Linux coming soon).
+- Working example app included.
 
-```js
-const inputBytes = ethers.utils.isBytesLike(value)
-        ? value
-        : ethers.utils.toUtf8Bytes(value);
-const tx = await inputContract.addInput(inputBytes);
-const receipt = await tx.wait(1);
-const event = receipt.events?.find((e) => e.event === "InputAdded");
-console.log(`Input added => epoch : ${event?.args.epochNumber} index: ${event?.args.inputIndex} `)
-```
+Check [package readme](https://github.com/celo-org/celo-composer/blob/main/packages/flutter-app/README.md) to learn more about.
 
-### Query Outputs: the Echoes Component
+### Angular
 
-This component uses [apollo](https://www.apollographql.com/docs/react/) to interact with the Rollups Query Server.
+- Support for Website and Progressive Web Application.
+- Works with all major crypto wallets.
 
-As the Echo DApps back-end replicates the given inputs as notices, we will be querying only for these.
+Check [package readme](https://github.com/celo-org/celo-composer/blob/main/packages/angular-app/README.md) to learn more about.
 
-To accomplish that this React App does the following:
+<!-- USAGE EXAMPLES -->
 
-- Configures an Apollo client
-- Sets up the GraphQL query
-- Checks query results
+## 🔭 Learning Solidity
 
-#### Configure Apollo client
+📕 Read the docs: <https://docs.soliditylang.org>
 
-Apollo requires us to configure a client, which we do in the `index.js` file as follows:
+- [Primitive Data Types](https://solidity-by-example.org/primitives/)
+- [Mappings](https://solidity-by-example.org/mapping/)
+- [Structs](https://solidity-by-example.org/structs/)
+- [Modifiers](https://solidity-by-example.org/function-modifier/)
+- [Events](https://solidity-by-example.org/events/)
+- [Inheritance](https://solidity-by-example.org/inheritance/)
+- [Payable](https://solidity-by-example.org/payable/)
+- [Fallback](https://solidity-by-example.org/fallback/)
 
-```js
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-...
-// Setup GraphQL Apollo client 
-const URL_QUERY_GRAPHQL = "http://localhost:4000/graphql";
+📧 Learn the [Solidity globals and units](https://solidity.readthedocs.io/en/v0.8.19/units-and-global-variables.html)
 
-const client = new ApolloClient({
-  uri: URL_QUERY_GRAPHQL,
-  cache: new InMemoryCache(),
-});
+## Support
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+Join the Celo Discord server at <https://chat.celo.org>. Reach out on the dedicated repo channel [here](https://discord.com/channels/600834479145353243/941003424298856448).
 
-  <ApolloProvider client={client}>
-    <App />
-  </ApolloProvider>
+<!-- ROADMAP -->
 
-);
-```
+## Roadmap
 
-#### Setup GraphQL query
+See the [open issues](https://github.com/celo-org/celo-composer/issues) for a full list of proposed features (and known issues).
 
-At the `Echoes Component` we will actually query for the `Notices`. You can check the entire schema accessing the `Query Server` with a browser at [http://localhost:4000/graphql](http://localhost:4000/graphql)
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-Below we define the GraphQL query, and then use Apollo's `useQuery` function so that the server is polled every 500ms:
+<!-- CONTRIBUTING -->
 
-```js
-import { useQuery, gql } from '@apollo/client';
-import React, { useState, useEffect } from 'react';
+## Contributing
 
-// GraphQL query to retrieve notices given a cursor
-const GET_NOTICES = gql`
-  query GetNotices($cursor: String) {
-    notices (first: 10, after: $cursor) {
-      totalCount
-      pageInfo {
-        hasNextPage
-        endCursor
-      }
-      nodes{
-        id
-        payload
-        index
-        input{
-            index
-            epoch{
-                index
-            }
-        }
-      }
-    }
-  }
-`;
-...
-function EchoesList() {
-  const [cursor, setCursor] = useState(null);
-  ...
-  // Retrieve notices every 500 ms
-  const { loading, error, data } = useQuery(GET_NOTICES, {
-        variables: { cursor },
-        pollInterval: 500
-  });
-}
-```
+We welcome contributions from the community.
 
-#### Check query results
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-The Apollo client itself takes care of the polling, so that here we can just check for the results.
+## License
 
-```js
-function EchoesList {
-  ...
-  // Check query result
-  const length = data?.notices?.nodes?.length;
-  if (length) {
-      // Update cursor so that next GraphQL poll retrieves only newer data
-      setCursor(data.notices.pageInfo.endCursor);
-  }
-  ...
-  // Render results
-  data?.notices?.nodes?.map((node) => {
-        // Render echo from notice
-        const echo = ethers.utils.toUtf8String(node.payload);
-        ...
-  })
-}
-```
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+<!-- CONTACT -->
+## Contact
+
+- [@CeloDevs](https://twitter.com/CeloDevs)
+- [Discord](https://discord.com/invite/celo)
+
+<p align="right">(<a href="#top">back to top</a>)</p>

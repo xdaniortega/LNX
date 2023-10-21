@@ -1,57 +1,41 @@
 {
-    "name": "frontend-echo",
-    "version": "0.16.0",
+    "name": "lnx",
+    "version": "1.0.0",
+    "description": "Custom Celo Composer project.",
     "private": true,
-    "dependencies": {
-        "@apollo/client": "^3.7.13",
-        "@cartesi/rollups": "^1.0.0",
-        "@chakra-ui/core": "^0.8.0",
-        "@chakra-ui/react": "^2.6.1",
-        "@emotion/core": "^11.0.0",
-        "@emotion/react": "^11.10.8",
-        "@emotion/styled": "^11.10.8",
-        "@testing-library/jest-dom": "^5.16.5",
-        "@testing-library/react": "^14.0.0",
-        "@testing-library/user-event": "^14.4.3",
-        "emotion-theming": "^11.0.0",
-        "ethers": "^5.7.2",
-        "framer-motion": "^10.12.7",
-        "graphql": "^16.6.0",
-        "husky": "^8.0.3",
-        "lint-staged": "^13.2.2",
-        "prettier": "^2.8.8",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "react-scripts": "5.0.1",
-        "web-vitals": "^3.3.1"
-    },
+    "author": "Celo",
+    "license": "MIT",
     "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "react-app:dev": "yarn workspace @lnx/react-app dev",
+        "react-app:build": "yarn workspace @lnx/react-app build",
+        "react-app:start": "yarn workspace @lnx/react-app start",
+        "react-app:lint": "yarn workspace @lnx/react-app lint",
+        "hardhat:test": "yarn workspace @lnx/hardhat test",
+        "hardhat:test-local": "yarn workspace @lnx/hardhat test-local",
+        "hardhat:create-account": "yarn workspace @lnx/hardhat create-account",
+        "hardhat:accounts": "yarn workspace @lnx/hardhat accounts",
+        "hardhat:devchain": "yarn workspace @lnx/hardhat devchain",
+        "hardhat:deploy": "yarn workspace @lnx/hardhat deploy",
+        "hardhat:deploy-reset-watch": "yarn workspace @lnx/hardhat deploy-reset-watch",
+        "hardhat:watch": "yarn workspace @lnx/hardhat watch",
+        "hardhat:fork-mainnet": "yarn workspace @lnx/hardhat fork-mainnet"
     },
-    "eslintConfig": {
-        "extends": [
-            "react-app",
-            "react-app/jest"
-        ]
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/celo-org/celo-composer.git"
     },
-    "lint-staged": {
-        "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-            "prettier --write"
-        ]
+    "bugs": {
+        "url": "https://github.com/celo-org/celo-composer/issues"
     },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
+    "homepage": "https://github.com/celo-org/celo-composer/blob/main/README.md",
+    "workspaces": [
+        "packages/*"
+    ],
+    "keywords": [
+        "celo-composer",
+        "celo"
+    ],
+    "dependencies": {
+        "@web3modal/wagmi": "^3.1.0"
     }
 }
