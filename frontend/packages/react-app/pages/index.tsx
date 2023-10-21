@@ -30,22 +30,15 @@ export default function Home() {
 
     // Aquí puedes usar la configuración de 'config' para enviar la transacción al contrato
     // y manejar el resultado según sea necesario
-	console.log("chainselector" ,args.destinationChainSelector);
 	writeContract({
-		address: '0x78966DeFeC946e78BF9E2A7f93b5f443ADbD36eE',
+		address: `0x${args.senderContractAddress}`,
 		abi: BasicMessageABI,
 		functionName: 'send',
-/*		args: [
-			args.destinationChainSelector, 
-			args.receiver,
-			args.messageText, 
-			args.payFeesIn
-		]
-*/		args: [
-			args.destinationChainSelector,
+    args: [
+			"16015286601757825753",
 			args.receiver,
 			args.messageText,
-			args.payFeesIn
+			1
 		]
 		}).then((hash) => {
 			if (hash) {

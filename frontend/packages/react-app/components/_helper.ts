@@ -32,7 +32,7 @@ function getNetworkEnumFromName2(networkName: string): SupportedNetworks {
     return SupportedNetworks.OPTIMISM_GOERLI;
   } else if (networkName === "Avalanche Fuji") {
     return SupportedNetworks.AVALANCHE_FUJI;
-  } else if (networkName === "Avalanche Fuji") {
+  } else if (networkName === "Arbitrum Goerli") {
     return SupportedNetworks.ARBITRUM_GOERLI;
   } else if (networkName === "Polygon Mumbai") {
     return SupportedNetworks.POLYGON_MUMBAI;
@@ -56,6 +56,7 @@ interface NetworkConfig {
   ccipBnM: string;
   ccipLnM: string;
   original_chainID: number;
+  messageSender: string;
 }
 
 // Configuraciones de red para cada red admitida
@@ -69,6 +70,7 @@ const networks: { [key in SupportedNetworks]: NetworkConfig } = {
     ccipBnM: "0xFd57b4ddBf88a4e07fF4e34C487b99af2Fe82a05",
     ccipLnM: "0x466D489b6d36E7E3b824ef491C225F5830E81cC1",
     original_chainID: 0,
+    messageSender:"0x0",
   },
   [SupportedNetworks.OPTIMISM_GOERLI]: {
     name: "Optimism Goerli",
@@ -78,7 +80,8 @@ const networks: { [key in SupportedNetworks]: NetworkConfig } = {
     wrappedNative: "0x4200000000000000000000000000000000000006",
     ccipBnM: "0xaBfE9D11A2f1D61990D1d253EC98B5Da00304F16",
     ccipLnM: "0x835833d556299CdEC623e7980e7369145b037591",
-    original_chainID: 0,
+    original_chainID: 420,
+    messageSender:"0xCcB0F7F1DCdcD69d9D48094E3114cb3155F67eb8",
   },
   [SupportedNetworks.AVALANCHE_FUJI]: {
     name: "Avalanche Fuji",
@@ -89,7 +92,7 @@ const networks: { [key in SupportedNetworks]: NetworkConfig } = {
     ccipBnM: "0xD21341536c5cF5EB1bcb58f6723cE26e8D8E90e4",
     ccipLnM: "0x70F5c5C40b873EA597776DA2C21929A8282A3b35",
     original_chainID: 43113,
-
+    messageSender:"0x78966DeFeC946e78BF9E2A7f93b5f443ADbD36eE",
   },
   [SupportedNetworks.ARBITRUM_GOERLI]: {
     name: "Arbitrum Goerli",
@@ -99,8 +102,8 @@ const networks: { [key in SupportedNetworks]: NetworkConfig } = {
     wrappedNative: "0x32d5D5978905d9c6c2D4C417F0E06Fe768a4FB5a",
     ccipBnM: "0x0579b4c1C8AcbfF13c6253f1B10d66896Bf399Ef",
     ccipLnM: "0x0E14dBe2c8e1121902208be173A3fb91Bb125CDB",
-    original_chainID: 0,
-
+    original_chainID: 421613,
+    messageSender:"0xCcB0F7F1DCdcD69d9D48094E3114cb3155F67eb8",
   },
   [SupportedNetworks.POLYGON_MUMBAI]: {
     name: "Polygon Mumbai",
@@ -110,29 +113,31 @@ const networks: { [key in SupportedNetworks]: NetworkConfig } = {
     wrappedNative: "0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889",
     ccipBnM: "0xf1E3A5842EeEF51F2967b3F05D45DD4f4205FF40",
     ccipLnM: "0xc1c76a8c5bFDE1Be034bbcD930c668726E7C1987",
-    original_chainID: 0,
+    original_chainID: 80001,
+    messageSender:"0xCcB0F7F1DCdcD69d9D48094E3114cb3155F67eb8",
+
   },
   [SupportedNetworks.BSC_TESTNET]: {
     name: "Binance Smart Chain Testnet",
     chainId: 13264668187771770619, // TODO: Agregar el chain ID correcto para BSC Testnet
-    router: "0xYourBSCTestnetRouterAddress", // TODO: Agregar la dirección del router para BSC Testnet
-    linkToken: "0xYourBSCTestnetLinkAddress", // TODO: Agregar la dirección de LINK para BSC Testnet
-    wrappedNative: "0xYourBSCTestnetWETHAddress", // TODO: Agregar la dirección de WETH para BSC Testnet
-    ccipBnM: "0xYourBSCTestnetCCIPBnMAddress", // TODO: Agregar la dirección de CCIP-BnM para BSC Testnet
-    ccipLnM: "0xYourBSCTestnetCCIPLnMAddress", // TODO: Agregar la dirección de CCIP-LnM para BSC Testnet
-    original_chainID: 0,
-
+    router: "0x9527E2d01A3064ef6b50c1Da1C0cC523803BCFF2", // TODO: Agregar la dirección del router para BSC Testnet
+    linkToken: "0x84b9B910527Ad5C03A9Ca831909E21e236EA7b06", // TODO: Agregar la dirección de LINK para BSC Testnet
+    wrappedNative: "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd", // TODO: Agregar la dirección de WETH para BSC Testnet
+    ccipBnM: "0xbFA2ACd33ED6EEc0ed3Cc06bF1ac38d22b36B9e9", // TODO: Agregar la dirección de CCIP-BnM para BSC Testnet
+    ccipLnM: "0x79a4Fc27f69323660f5Bfc12dEe21c3cC14f5901", // TODO: Agregar la dirección de CCIP-LnM para BSC Testnet
+    original_chainID: 97,
+    messageSender:"0xCB20b0Ea108e53777dcc52F1C79aaF268eEeA9Af",
   },
     [SupportedNetworks.BASE_GOERLI]: {
     name: "Base Goerli",
     chainId: 5790810961207155433, // TODO: Agregar el chain ID correcto para BSC Testnet
-    router: "0xYourBSCTestnetRouterAddress", // TODO: Agregar la dirección del router para BSC Testnet
-    linkToken: "0xYourBSCTestnetLinkAddress", // TODO: Agregar la dirección de LINK para BSC Testnet
-    wrappedNative: "0xYourBSCTestnetWETHAddress", // TODO: Agregar la dirección de WETH para BSC Testnet
-    ccipBnM: "0xYourBSCTestnetCCIPBnMAddress", // TODO: Agregar la dirección de CCIP-BnM para BSC Testnet
-    ccipLnM: "0xYourBSCTestnetCCIPLnMAddress", // TODO: Agregar la dirección de CCIP-LnM para BSC Testnet
-    original_chainID: 0,
-
+    router: "0xA8C0c11bf64AF62CDCA6f93D3769B88BdD7cb93D", // TODO: Agregar la dirección del router para BSC Testnet
+    linkToken: "0x6D0F8D488B669aa9BA2D0f0b7B75a88bf5051CD3", // TODO: Agregar la dirección de LINK para BSC Testnet
+    wrappedNative: "0x4200000000000000000000000000000000000006", // TODO: Agregar la dirección de WETH para BSC Testnet
+    ccipBnM: "0xbf9036529123DE264bFA0FC7362fE25B650D4B16", // TODO: Agregar la dirección de CCIP-BnM para BSC Testnet
+    ccipLnM: "0x73ed16c1a61b098fd6924CCE5cC6a9A30348D944", // TODO: Agregar la dirección de CCIP-LnM para BSC Testnet
+    original_chainID: 8453,
+    messageSender:"0xd216fB6b7d80FC7Ea9C708E80f63223C4D307f0B",
   },
 };
 
@@ -203,11 +208,13 @@ function buildArgs(text: string) {
   let destinationChainSelector;
   let receiver;
   let payFeesIn;
-  
+  console.log("hi");
   if(chain){
-    senderContractAddress = '0x78966DeFeC946e78BF9E2A7f93b5f443ADbD36eE';
-    //destinationChainSelector = getChainIdFromNetworkName("");
-    destinationChainSelector= "16015286601757825753";
+console.log(chain);
+  console.log(networks[getNetworkEnumFromName2(chain.name)].messageSender.slice(2));
+
+    senderContractAddress = networks[getNetworkEnumFromName2(chain.name)].messageSender.slice(2); //this slic removes 0x for nexts compatibilitites
+    destinationChainSelector = 16015286601757825753;
     receiver = '0x98fcf378FdB37a9615014E91772EF9d921697ED2';
     payFeesIn = 1;
   }else{
@@ -218,6 +225,7 @@ function buildArgs(text: string) {
   }
 
   return {
+      senderContractAddress,
       destinationChainSelector,
       receiver,
       messageText: text,
