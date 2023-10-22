@@ -29,6 +29,29 @@ User inputs to a Cartesi dApp come through Message Sender Smart Contracts dedica
 
 * **Risk Mitigation**: The ability to deploy on various blockchains reduces dependence on a single network, thereby mitigating risks associated with technical, operational, and governance issues, as well as concerns related to limited user base, low adoption rates, development constraints of the underlying chain, or regulatory alterations.
 
+## Interact with the application
+
+1. Go to frontend directory:
+
+```shell
+cd frontend/packages/react-app
+```
+
+2. Run frontend server (in case this command does not work go to step 2b.)
+```shell
+yarn start
+```
+
+3. Go to your preferred browser open `localhost:3000`` and use your desired network to interact with Cartesi Echo dApp.
+
+(2b.) Build the frontend with the command:
+
+```shell
+yarn build
+```
+
+Go back to step 2.
+
 ## Development process
 
 
